@@ -19,7 +19,8 @@
     "noEmitHelpers": false
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "backend/***/**/*"
   ],
   "exclude": [
     "node_modules"
