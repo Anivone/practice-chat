@@ -1,8 +1,7 @@
+import * as bcrypt from 'bcrypt';
 import { Document, Model, Schema } from 'mongoose';
 import { IAccount } from "../../domain/entities/types";
 import { Account } from "../../domain/entities/Account";
-
-const bcrypt = require("bcryptjs");
 
 export interface IAccountDocument extends Omit<IAccount, '_id'>, Document {
 }
