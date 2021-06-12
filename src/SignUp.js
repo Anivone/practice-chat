@@ -47,6 +47,7 @@ export default function SignUp() {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
+
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="fname"
@@ -75,10 +76,21 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="telephone"
+                                label="Phone Number"
+                                name="telephone"
+                                autoComplete="telephone"
                             />
                         </Grid>
                         <Grid item xs={12}>

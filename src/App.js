@@ -11,10 +11,18 @@ export default function App() {
             <Box my={4}>
 
                 <SignIn/>
-                <SignUp/>
-                <ResetPassword/>
-
             </Box>
+
+
+            <Box my={4}>
+                <SignUp/>
+            </Box>
+
+            <Box my={8}>
+
+                <ResetPassword/>
+            </Box>
+
         </Container>
     );
 }
