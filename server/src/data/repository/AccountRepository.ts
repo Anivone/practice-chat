@@ -16,31 +16,34 @@ export class AccountRepository implements IAccountRepository {
         this.AccountModel = AccountModel;
     }
 
-    async createAccount(accountProps: IAccount): Promise<Account> {
+    async create(accountProps: IAccount): Promise<Account> {
         const [err, account] = await to<IAccount>(new this.AccountModel({
             phone: accountProps.phone,
             password: accountProps.password,
-        }).save());
+        }).save())
 
-        if (err) throw new Error(err.message);
+        if (err){
+            console.log(err);
+            return;
+        }
 
         return this.AccountModel.toAccount(account);
     }
 
-    async deleteAccount(accountID: string): Promise<Account> {
+    async delete(accountID: string): Promise<Account> {
         return this.AccountModel.toAccount(await this.AccountModel.findByIdAndRemove(accountID));
     }
 
-    async getAccountById(accountID: string): Promise<Account> {
+    async getById(accountID: string): Promise<Account> {
         return this.AccountModel.toAccount(await this.AccountModel.findById(accountID));
     }
 
-    async getAccounts(filter?: any): Promise<Account[]> {
+    async getAll(filter?: any): Promise<Account[]> {
         const accounts = await this.AccountModel.find(filter);
         return accounts.map(account => this.AccountModel.toAccount(account));
     }
 
-    async updateAccount(accountID: string, updateProps: any): Promise<Account> {
+    async update(accountID: string, updateProps: any): Promise<Account> {
         return this.AccountModel.toAccount(await this.AccountModel.findByIdAndUpdate(accountID, updateProps));
     }
 

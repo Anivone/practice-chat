@@ -23,7 +23,7 @@ export class DeleteAccountByUserId implements IUseCase<IAccount> {
         if (err) throw err;
         if (!accounts[0]) throw new Error('No accounts with such userID have been found');
 
-        return this.accountRepository.deleteAccount(accounts[0]._id);
+        return this.accountRepository.delete(accounts[0]._id);
     }
 
 }

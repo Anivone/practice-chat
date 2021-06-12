@@ -11,7 +11,7 @@ export class DeleteAccount implements IUseCase<IAccount> {
     }
 
     execute(props: string): Promise<IAccount> {
-        return this.accountRepository.deleteAccount(props);
+        return this.accountRepository.delete(props);
     }
 
 }

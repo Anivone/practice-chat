@@ -1,14 +1,4 @@
 import {IMessage} from "../entities/types";
+import {IEntity} from "./IEntity";
 
-export interface IMessageRepository{
-
-    getMessages(filter?: any): Promise<IMessage[]>;
-
-    getMessageById(messageID: string): Promise<IMessage>;
-
-    createMessage(messageProps: IMessage): Promise<IMessage>;
-
-    updateMessage(messageID: string, updateProps: any): Promise<IMessage>;
-
-    deleteMessage(messageID: string): Promise<IMessage>;
-}
+export interface IMessageRepository extends IEntity<IMessage>{}

@@ -11,7 +11,7 @@ export class GetAccountById implements IUseCase<IAccount> {
     }
 
     execute(props: string): Promise<IAccount> {
-        return this.accountRepository.getAccountById(props);
+        return this.accountRepository.getById(props);
     }
 
 }

@@ -14,7 +14,7 @@ export class CreateAccount implements IUseCase<IAccount> {
     execute(props: IAccount): Promise<IAccount> {
         const account = new Account(props);
 
-        return this.accountRepository.createAccount(account);
+        return this.accountRepository.create(account);
     }
 
 }

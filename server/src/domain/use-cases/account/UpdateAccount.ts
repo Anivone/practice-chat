@@ -16,7 +16,7 @@ export class UpdateAccount implements IUseCase<IAccount> {
     }
 
     execute({ id, updateProps }: UpdateUseCase): Promise<IAccount> {
-        return this.accountRepository.updateAccount(id, updateProps);
+        return this.accountRepository.update(id, updateProps);
     }
 
 }
