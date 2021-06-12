@@ -1,6 +1,6 @@
 import { Document, Model, Schema } from "mongoose";
 import {IMessage} from "../../domain/entities/types";
-import { Message } from "../../domain/entities/message";
+import { Message } from "../../domain/entities/Message";
 
 export interface IMessageDocument extends Omit<IMessage, '_id'>, Document {
 }

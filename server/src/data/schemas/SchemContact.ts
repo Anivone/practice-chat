@@ -1,6 +1,6 @@
 import { Document, Model, Schema } from "mongoose";
 import {IContact} from "../../domain/entities/types";
-import {Contact} from "../../domain/entities/contact";
+import {Contact} from "../../domain/entities/Contact";
 
 export interface IContactDocument extends Omit<IContact, '_id'>, Document {
 }

@@ -1,6 +1,6 @@
 import { Document, Model, Schema } from "mongoose";
 import {IChat} from "../../domain/entities/types";
-import {Chat} from "../../domain/entities/chat";
+import {Chat} from "../../domain/entities/Chat";
 
 export interface IChatDocument extends Omit<IChat, '_id'>, Document {
 }
