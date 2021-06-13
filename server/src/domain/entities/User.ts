@@ -9,7 +9,6 @@ export class User {
     city?: string;
     avatar: string;
     description?: string;
-    accountID: string;
 
 
     constructor({
@@ -21,7 +20,6 @@ export class User {
                     city,
                     avatar,
                     description,
-                    accountID,
                 }: IUser){
 
         this._id = _id;
@@ -32,6 +30,5 @@ export class User {
         this.city = city;
         this.avatar = avatar;
         this.description = description;
-        this.accountID = accountID;
     }
 }

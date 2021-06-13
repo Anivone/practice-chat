@@ -7,7 +7,7 @@ export interface IUserService {
 
     authenticate(token: string): Promise<IUserAccount>
 
-    signup(props: IUserAccount): Promise<IUserAccount>;
+    signup(props: Omit<IUserAccount, 'userID'>): Promise<IUserAccount>;
 
     login(email: string, password: string): Promise<IUserAccount>;
 

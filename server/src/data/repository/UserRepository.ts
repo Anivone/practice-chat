@@ -25,7 +25,6 @@ export class UserRepository implements IUserRepository {
             city: userProps.city,
             avatar: userProps.avatar,
             description: userProps.description,
-            accountID: userProps.accountID,
         }).save())
 
         if (err) throw err;

@@ -36,6 +36,7 @@ AccountSchema.statics.toAccount = (account: IAccount) => {
         _id: account._id.toString(),
         phone: account.phone,
         password: account.password,
+        userID: account.userID
     })
 };
 
