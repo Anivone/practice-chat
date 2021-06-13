@@ -6,7 +6,7 @@ export function generateJwtToken(user: Omit<IAccount, 'password'>) {
         {
             data: {
                 userID: user._id,
-                email: user.phone,
+                phone: user.phone,
             }
         },
         process.env.JWT_SECRET,
