@@ -22,7 +22,7 @@ export class AuthController {
 
         const newToken = generateJwtToken({
             phone: user.phone,
-            _id: user.accountID,
+            userID: user.userID,
         });
 
         res.setHeader('Authorization', 'Bearer ' + newToken);
@@ -41,38 +41,41 @@ export class AuthController {
         const [err, user] = await to<UserAccount>(userService.login(body.phone, body.password))
         if (err) throw err;
 
-        const token = generateJwtToken({
-            phone: user.phone,
-            _id: user.accountID,
-        });
+        // const token = generateJwtToken({
+        //     phone: user.phone,
+        //     userID: user.userID,
+        // });
 
-        res.setHeader('Authorization', 'Bearer ' + token);
+        // res.setHeader('Authorization', 'Bearer ' + token);
 
         return {
             message: 'User has successfully logged in',
             user,
-            token
+            // token
         }
     }
 
     @Post('/signup')
     async signup(@Req() req: ContainerReq, @Res() res: Response, @Body() body: any): Promise<any> {
         const { userService } = req.container.cradle;
-        const [err, user] = await to<UserAccount>(userService.signup(req.body));
+        const [err, user] = await to<UserAccount>(userService.signup(body));
 
-        if (err) throw err;
-
-        const token = generateJwtToken({
-            phone: user.phone,
-            _id: user.accountID,
+        if (err) return res.status(400).json({
+            status: 'error',
+            msg: err.message,
         });
 
-        res.setHeader('Authorization', 'Bearer ' + token);
+        // const token = generateJwtToken({
+        //     phone: user.phone,
+        //     userID: user.userID,
+        // });
+        //
+        // res.setHeader('Authorization', 'Bearer ' + token);
 
         return {
             message: 'User has successfully signed up',
             user,
-            token
+            // token
         }
     }
 

@@ -46,26 +46,6 @@ export class UserService implements IUserService {
         this.deleteUser = deleteUser;
     }
 
-    async createUsers(user: IUser) {
-        let err;
-        [err] = await to<any>(axios.post(
-            `http://localhost:${process.env.SERVER_PORT}/users`, {
-                ...user,
-                userID: user._id,
-            })
-        );
-        if (err) throw err;
-    }
-
-    async deleteUsers(userID: string) {
-        let err, response;
-        [err, response] = await to<any>(axios.delete(
-            `http://localhost:${process.env.SERVER_PORT}/users/${userID}`)
-        );
-        if (err) throw err;
-        console.log('[X] deleteUsers data: ', response.data);
-    }
-
     async authenticate(token: string): Promise<UserAccount> {
         const jwtPayload: any = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -82,14 +62,14 @@ export class UserService implements IUserService {
         if (!accountList[0]) throw ('User does not exist');
 
         const account = accountList[0];
-        const [err2, user] = await to<IUser>(this.getUserById.execute(account._id));
+        const [err2, user] = await to<IUser>(this.getUserById.execute(account.userID));
 
         if (err2) throw err2;
 
         return new UserAccount({
             ...user,
             phone: account.phone,
-            accountID: user._id,
+            userID: user._id,
         });
     }
 
@@ -97,25 +77,29 @@ export class UserService implements IUserService {
         const [err, accountList] = await to<IAccount[]>(this.getAccounts.execute({ phone: phone }));
         if (err) throw err;
 
-        if (!accountList[0]) throw ('User does not exist');
+        if (!accountList[0]) throw new Error('User does not exist');
 
         const account = accountList[0];
 
-        if (!await this.isValidPassword(password, account)) throw ('Password is not correct');
+        if (!await this.isValidPassword(password, account)) throw new Error('Password is not correct');
 
-        const [err2, user] = await to<IUser>(this.getUserById.execute(account._id));
+        const [err2, user] = await to<IUser>(this.getUserById.execute(account.userID));
 
         if (err2) throw err2;
 
         return new UserAccount({
             ...user,
             phone: account.phone,
-            accountID: user._id,
+            userID: user._id,
         })
 
     }
 
-    async signup(props: UserAccount): Promise<UserAccount> {
+    async signup(props: Omit<UserAccount, 'userID'>): Promise<UserAccount> {
+        const [err3, accounts] = await to<IAccount[]>(this.getAccounts.execute({phone: props.phone}));
+        if (err3) throw err3;
+        if (accounts.length > 0) throw new Error('Account with such phone already exists');
+
         const [err, user] = await to<IUser>(
             this.createUser.execute(props)
         );
@@ -125,26 +109,15 @@ export class UserService implements IUserService {
             this.createAccount.execute({
                 phone: props.phone,
                 password: props.password,
-                _id: user._id
+                userID: user._id
             }));
         if (err2) throw err2;
-
-        await this.createUsers(user);
 
         return new UserAccount({
             ...user,
             phone: account.phone,
-            accountID: user._id,
+            userID: user._id,
         });
-    }
-
-    async delete(userID: string) {
-        const [err, user] = await to<IUser>(this.deleteUser.execute(userID));
-        if (err) throw err;
-
-        await this.deleteUsers(userID);
-
-        return user;
     }
 
     async isValidPassword(password: string, account: IAccount) {

@@ -2,6 +2,7 @@ export interface IAccount {
     _id?: string;
     phone: string;
     password: string;
+    userID: string;
 }
 
 export interface IUser {
@@ -13,7 +14,6 @@ export interface IUser {
     city?: string;
     avatar: string;
     description?: string;
-    accountID: string;
 }
 
 export interface IContact {

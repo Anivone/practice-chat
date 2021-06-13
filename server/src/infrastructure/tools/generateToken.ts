@@ -5,7 +5,7 @@ export function generateJwtToken(user: Omit<IAccount, 'password'>) {
     return jwt.sign(
         {
             data: {
-                userID: user._id,
+                userID: user.userID,
                 phone: user.phone,
             }
         },

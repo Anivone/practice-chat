@@ -7,7 +7,7 @@ import to from "await-to-js";
 import { Response } from "express";
 
 @JsonController('/contacts')
-export class ContactController {
+export class ContactsController {
 
     @Get('/')
     async getContacts(@Req() req: ContainerReq): Promise<IContact[]> {

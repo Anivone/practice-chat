@@ -20,6 +20,7 @@ export class AccountRepository implements IAccountRepository {
         const [err, account] = await to<IAccount>(new this.AccountModel({
             phone: accountProps.phone,
             password: accountProps.password,
+            userID: accountProps.userID,
         }).save())
 
         if (err) throw err;

@@ -40,10 +40,6 @@ const UserSchema: Schema<IUserDocument> = new Schema<IUserDocument>(
         description: {
             type: Schema.Types.String,
             required: false,
-        },
-        accountID: {
-            type: Schema.Types.String,
-            required: true,
         }
     },
     {
@@ -60,7 +56,6 @@ UserSchema.statics.toUser = (user: IUser) => {
         city: user.city,
         avatar: user.avatar,
         description: user.description,
-        accountID: user.accountID,
     })
 };
 

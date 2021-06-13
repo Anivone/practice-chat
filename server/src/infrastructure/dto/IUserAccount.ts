@@ -12,10 +12,9 @@ export class UserAccount {
     city?: string
     avatar: string;
     description?: string;
-    accountID: string;
     phone: string;
     password?: string;
-
+    userID: string;
 
     constructor(props: IUserAccount) {
         this.firstName = props.firstName;
@@ -27,6 +26,6 @@ export class UserAccount {
         this.avatar = props.avatar;
         this.email = props.email;
         this.password = props.password;
-        this.accountID = props.accountID;
+        this.userID = props.userID;
     }
 }

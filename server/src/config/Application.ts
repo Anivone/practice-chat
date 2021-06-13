@@ -5,8 +5,9 @@ import * as mongoose from "mongoose";
 
 export class Application {
     private server: any;
-    private express: ExpressConfig;
+    express: ExpressConfig;
 
+    public static connection: Connection;
     public static instance: Application;
 
     private constructor(connection: Connection) {
@@ -20,7 +21,7 @@ export class Application {
         if (this.instance) return this.instance;
 
         const [err, connection] = await to(mongoose.createConnection(
-            `mongodb://${process.env.MONGO_DB_HOST}:${process.env.MONGO_DB_PORT}/${process.env.DB_NAME}`,
+            `mongodb://${process.env.MONGO_DB_HOST}:${process.env.MONGO_DB_PORT}/${process.env.MONGO_DB_NAME}`,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
@@ -30,7 +31,15 @@ export class Application {
             }));
         if (err) throw err;
 
-        this.instance = new Application(connection);
+        this.connection = connection;
+        this.instance = new Application(this.connection);
+
         return this.instance;
+    }
+
+    static async disconnect() {
+        if (!this.connection) return;
+
+        await this.connection.close();
     }
 }

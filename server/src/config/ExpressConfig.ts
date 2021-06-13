@@ -7,6 +7,7 @@ import { Connection } from 'mongoose';
 import makeContainer from "./AwilixContainer";
 import { scopePerRequest } from "awilix-express";
 import { AwilixContainer } from "awilix";
+import "reflect-metadata";
 
 export class ExpressConfig {
     app: express.Express;
@@ -26,7 +27,7 @@ export class ExpressConfig {
     }
 
     setUpControllers() {
-        const env = process.env.ENVIRONMENT;
+        const env = process.env.ENV;
         const controllerPath =
             env === 'PROD'
                 ? path.resolve('dist', 'infrastructure', 'controllers')
