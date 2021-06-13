@@ -3,8 +3,15 @@ import { Request } from 'express';
 import { Connection } from "mongoose";
 import mongoModelsConfig from "./ModelsConfig";
 
+import { ChatRepository } from "../data/repository/ChatRepository";
 import { ContactRepository } from "../data/repository/ContactRepository";
 import { AccountRepository } from "../data/repository/AccountRepository";
+
+import { CreateChat } from "../domain/use-cases/chat/CreateChat";
+import { DeleteChat } from "../domain/use-cases/chat/DeleteChat";
+import { GetChatById } from "../domain/use-cases/chat/GetChatById";
+import { GetChats } from "../domain/use-cases/chat/GetChats";
+import { UpdateChat } from "../domain/use-cases/chat/UpdateChat";
 
 import { CreateAccount } from "../domain/use-cases/account/CreateAccount";
 import { DeleteAccount } from "../domain/use-cases/account/DeleteAccount";
@@ -27,6 +34,7 @@ import { GetUserById } from "../domain/use-cases/user/GetUserById";
 import { UpdateUser } from "../domain/use-cases/user/UpdateUser";
 import { GetUsers } from "../domain/use-cases/user/GetUsers";
 import { UserRepository } from "../data/repository/UserRepository";
+import {ChatService} from "../infrastructure/services/ChatServices";
 
 export interface ContainerReq extends Request {
     container: awilix.AwilixContainer;
@@ -52,10 +60,12 @@ export default function makeContainer(connection: Connection) {
         accountRepository: awilix.asClass(AccountRepository).singleton(),
         userRepository: awilix.asClass(UserRepository).singleton(),
         contactRepository: awilix.asClass(ContactRepository).singleton(),
+        chatRepository: awilix.asClass(ChatRepository).singleton(),
 
         // Services
         userService: awilix.asClass(UserService).singleton(),
         contactService: awilix.asClass(ContactService).singleton(),
+        chatService: awilix.asClass(ChatService).singleton(),
 
         // Use-Cases
         createAccount: awilix.asClass(CreateAccount).singleton(),
@@ -76,6 +86,12 @@ export default function makeContainer(connection: Connection) {
         getContactById: awilix.asClass(GetContactById).singleton(),
         getContacts: awilix.asClass(GetContacts).singleton(),
         updateContact: awilix.asClass(UpdateContact).singleton(),
+
+        createChat: awilix.asClass(CreateChat).singleton(),
+        deleteChat: awilix.asClass(DeleteChat).singleton(),
+        getChatById: awilix.asClass(GetChatById).singleton(),
+        getChats: awilix.asClass(GetChats).singleton(),
+        updateChat: awilix.asClass(UpdateChat).singleton(),
 
     });
 
