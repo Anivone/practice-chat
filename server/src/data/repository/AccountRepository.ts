@@ -22,10 +22,7 @@ export class AccountRepository implements IAccountRepository {
             password: accountProps.password,
         }).save())
 
-        if (err){
-            console.log(err);
-            return;
-        }
+        if (err) throw err;
 
         return this.AccountModel.toAccount(account);
     }
