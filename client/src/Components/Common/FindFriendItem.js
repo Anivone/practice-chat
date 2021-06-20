@@ -1,12 +1,9 @@
 import React from "react";
 import {
-    Box,
-    Divider,
     ListItem,
     ListItemIcon,
     ListItemSecondaryAction,
     ListItemText,
-    Typography
 } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddCircleSharpIcon from '@material-ui/icons/AddCircleSharp';

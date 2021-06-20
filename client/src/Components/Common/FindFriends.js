@@ -1,15 +1,15 @@
 import React from "react";
-import {Box, FormControl, Input, InputAdornment, InputLabel, List, makeStyles, TextField} from "@material-ui/core";
+import {Box, InputAdornment, List, makeStyles, TextField} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 
 import {Typography} from "@material-ui/core";
 import FindFriendItem from "./FindFriendItem";
 
 const useStyles = makeStyles((theme) => ({
-    root:{
+    root: {
         width: '100%',
-        margin:'0px',
-        padding:'0px'
+        margin: '0px',
+        padding: '0px'
     }
 }));
 
