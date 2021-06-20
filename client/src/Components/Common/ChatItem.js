@@ -14,13 +14,13 @@ function ChatItem() {
         setSelectedIndex(index);
     };
     return (
-        <ListItem style={{borderBottom:"1px solid #e0e0e0"}} button
+        <ListItem style={{borderBottom: "1px solid #e0e0e0"}} button
                   selected={selectedIndex === 0}
                   onClick={(event) => handleListItemClick(event, 0)}>
             <ListItemIcon>
                 <AccountCircleIcon fontSize="large"/>
             </ListItemIcon>
-            <ListItemText primary="Contact 1" secondary="Today at 12:41"/>
+            <ListItemText primary="Contact 1"/>
         </ListItem>
     )
 }
