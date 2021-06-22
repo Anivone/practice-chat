@@ -64,6 +64,7 @@ export default function ResetPassword() {
                         label="Email Address"
                         name="email"
                         type="email"
+                        inputProps={{ pattern: "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" }}
                         autoComplete="email"
                         autoFocus
                     />

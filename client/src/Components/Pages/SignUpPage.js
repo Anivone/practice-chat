@@ -96,6 +96,7 @@ export default function SignUp() {
                                 name="telephone"
                                 autoComplete="telephone"
                                 type="tel"
+                                inputProps={{ pattern: "^\\+?3?8?(0\\d{9})$"}}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -108,6 +109,7 @@ export default function SignUp() {
                                 name="email"
                                 autoComplete="email"
                                 type="email"
+                                inputProps={{ pattern: "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" }}
                             />
                         </Grid>
                         <Grid item xs={12}>

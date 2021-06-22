@@ -61,6 +61,7 @@ export default function SignIn() {
                         name="telephone"
                         autoComplete="telephone"
                         type="tel"
+                        inputProps={{ pattern: "^\\+?3?8?(0\\d{9})$"}}
                         autoFocus
                     />
                     <TextField
