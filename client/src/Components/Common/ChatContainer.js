@@ -5,13 +5,21 @@ import {makeStyles} from "@material-ui/core/styles";
 import {ContainerContext} from "../../context/ContainerContext";
 import {MessageEntity} from "../../entities/MessageEntity";
 import Message from "./Message";
+import ChatNavbar from "./ChatNavbar";
 
 const useStyles = makeStyles(() => ({
     input: {
         height: "50%",
     },
     textInput: {
-        width: '75%',
+        width: '92%',
+    },
+    submitBtn:{
+        width:'8%'
+    },
+    btn:{
+        height:'100%',
+        width:'100%'
     }
 }))
 
@@ -68,7 +76,10 @@ function ChatContainer() {
                 <Typography variant="h5" style={{color: '#e0e0e0'}} gutterBottom> Select chat to start
                     chatting</Typography>
             </Box>*/}
-            <Box id="scrollable-div'" overflow="scrollable" height="75%" width="100%" display="flex"
+            <Box height="10%">
+            <ChatNavbar/>
+            </Box>
+            <Box id="scrollable-div'" overflow="scrollable" height="90%" width="100%" display="flex"
                  flexDirection="column"
                  justifyContent="flex-end"
             >
@@ -83,6 +94,7 @@ function ChatContainer() {
             <Box width="100%" marginTop={4}>
                 <form onSubmit={submitForm}>
                     <Grid container direction={'row'} justify={'center'} alignItems={'center'}>
+                        <Box display={'flex'} width="100%">
                         <Grid item className={classes.textInput}>
                             <TextField
                                 id="message"
@@ -97,11 +109,12 @@ function ChatContainer() {
                                 onKeyDown={onKeyDown}
                             />
                         </Grid>
-                        <Grid item>
+                        <Grid item className={classes.submitBtn}>
                             <Button
                                 variant={'contained'}
-                                type={'submit'}>Send !</Button>
+                                type={'submit'} color={'primary'} className={classes.btn}>Send !</Button>
                         </Grid>
+                        </Box>
                     </Grid>
                 </form>
             </Box>
