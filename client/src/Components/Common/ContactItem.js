@@ -15,6 +15,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from '@material-ui/icons/Delete';
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function ContactItem() {
+function ContactItem(props) {
     const classes = useStyles();
     const [openEditModal, setOpenEditModal] = React.useState(false);
 
@@ -80,14 +81,17 @@ function ContactItem() {
     const out = () =>{
         console.log("yes");
     }
+    const history = useHistory();
 
+    const handleClick = (path) => {history.push(path) }
     return (
         <div>
-        <ListItem style={{borderBottom: "1px solid #e0e0e0"}}>
+        <ListItem style={{borderBottom: "1px solid #e0e0e0"}} button onClick={() => handleClick("/")} >
             <ListItemIcon>
                 <AccountCircleIcon fontSize="large"/>
             </ListItemIcon>
-            <ListItemText primary="Contact 1"/>
+            <Typography variant="body2">{props.name} {props.surname}</Typography>
+
             <ListItemSecondaryAction>
                 <div>
                     <IconButton aria-label="edit" onClick={handleOpen}>

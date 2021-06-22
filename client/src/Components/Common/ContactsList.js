@@ -9,7 +9,7 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import {Typography} from "@material-ui/core";
 import ContactItem from "./ContactItem"
-
+import {testContacts} from "../../dataTest";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 
 function ContactsList() {
     const classes = useStyles();
+
+    const contacts = testContacts;
     return (
         <Box width="100%" display="flex" flexDirection="column" alignItems="center" height="90%">
             <Box width="100%" height="10%" display="flex" justifyContent="space-around" borderBottom="1px solid #9fa8da"
@@ -42,7 +44,14 @@ function ContactsList() {
             </Box>
 
             <List className={classes.root}>
-                <ContactItem/>
+                {
+                    contacts.length > 0 ?
+                        contacts.map((cts, index) => {
+                            let contact = (<ContactItem name={cts.contactName} surname={cts.contactSurname} key={index}/>)
+                            return contact;
+                        }): null
+                }
+
             </List>
         </Box>
     )

@@ -10,6 +10,8 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import {Typography} from "@material-ui/core";
 import CreateGroupItem from "./CreateGroupItem";
+import ContactItem from "./ContactItem";
+import {testContacts} from "../../dataTest";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CreateGroup() {
+    const contacts = testContacts;
     const classes = useStyles();
     return (
         <Box width="100%" display="flex" flexDirection="column" alignItems="center" height="90%">
@@ -51,7 +54,14 @@ function CreateGroup() {
 
 
             <List className={classes.root}>
-                <CreateGroupItem/>
+                {
+                    contacts.length > 0 ?
+                        contacts.map((cts, index) => {
+                            let contact = (<CreateGroupItem name={cts.contactName} surname={cts.contactSurname} key={index}/>)
+                            return contact;
+                        }): null
+                }
+
 
             </List>
         </Box>
