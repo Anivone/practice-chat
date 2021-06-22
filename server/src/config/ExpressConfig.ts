@@ -8,9 +8,12 @@ import makeContainer from "./AwilixContainer";
 import { scopePerRequest } from "awilix-express";
 import { AwilixContainer } from "awilix";
 import "reflect-metadata";
+import { Server } from "http";
+import { SocketConfig } from "./SocketConfig";
 
 export class ExpressConfig {
     app: express.Express;
+    http: Server;
     container: AwilixContainer;
 
     constructor(connection: Connection) {
@@ -24,6 +27,8 @@ export class ExpressConfig {
         this.app.use(scopePerRequest(this.container));
 
         this.setUpControllers();
+        this.http = require('http').Server(this.app);
+        new SocketConfig(this.http);
     }
 
     setUpControllers() {

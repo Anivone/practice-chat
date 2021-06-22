@@ -13,7 +13,7 @@ export class Application {
     private constructor(connection: Connection) {
         this.express = new ExpressConfig(connection);
         const port = process.env.SERVER_PORT;
-        this.server = this.express.app.listen(port,
+        this.server = this.express.http.listen(port,
             () => console.log(`Server started ! Express: http://localhost:${port}`));
     }
 
