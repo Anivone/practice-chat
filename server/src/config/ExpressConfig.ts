@@ -28,7 +28,7 @@ export class ExpressConfig {
 
         this.setUpControllers();
         this.http = require('http').Server(this.app);
-        new SocketConfig(this.http);
+        new SocketConfig(this.http, this.container);
     }
 
     setUpControllers() {

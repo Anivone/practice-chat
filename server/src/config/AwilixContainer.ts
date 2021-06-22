@@ -27,6 +27,19 @@ import { GetUserById } from "../domain/use-cases/user/GetUserById";
 import { UpdateUser } from "../domain/use-cases/user/UpdateUser";
 import { GetUsers } from "../domain/use-cases/user/GetUsers";
 import { UserRepository } from "../data/repository/UserRepository";
+import { UpdateMessage } from "../domain/use-cases/message/UpdateMessage";
+import { DeleteMessage } from "../domain/use-cases/message/DeleteMessage";
+import { GetMessageById } from "../domain/use-cases/message/GetMessageById";
+import { CreateMessage } from "../domain/use-cases/message/CreateMessage";
+import { GetMessages } from "../domain/use-cases/message/GetMessages";
+import { MessageRepository } from "../data/repository/MessageRepository";
+import { CreateChat } from "../domain/use-cases/chat/CreateChat";
+import { DeleteChat } from "../domain/use-cases/chat/DeleteChat";
+import { UpdateChat } from "../domain/use-cases/chat/UpdateMessage";
+import { GetChatById } from "../domain/use-cases/chat/GetChatById";
+import { GetChats } from "../domain/use-cases/chat/GetChats";
+import { ChatRepository } from "../data/repository/ChatRepository";
+import { ChatService } from "../infrastructure/services/ChatService";
 
 export interface ContainerReq extends Request {
     container: awilix.AwilixContainer;
@@ -52,10 +65,13 @@ export default function makeContainer(connection: Connection) {
         accountRepository: awilix.asClass(AccountRepository).singleton(),
         userRepository: awilix.asClass(UserRepository).singleton(),
         contactRepository: awilix.asClass(ContactRepository).singleton(),
+        messageRepository: awilix.asClass(MessageRepository).singleton(),
+        chatRepository: awilix.asClass(ChatRepository).singleton(),
 
         // Services
         userService: awilix.asClass(UserService).singleton(),
         contactService: awilix.asClass(ContactService).singleton(),
+        chatService: awilix.asClass(ChatService).singleton(),
 
         // Use-Cases
         createAccount: awilix.asClass(CreateAccount).singleton(),
@@ -76,6 +92,18 @@ export default function makeContainer(connection: Connection) {
         getContactById: awilix.asClass(GetContactById).singleton(),
         getContacts: awilix.asClass(GetContacts).singleton(),
         updateContact: awilix.asClass(UpdateContact).singleton(),
+
+        createMessage: awilix.asClass(CreateMessage).singleton(),
+        deleteMessage: awilix.asClass(DeleteMessage).singleton(),
+        getMessageById: awilix.asClass(GetMessageById).singleton(),
+        getMessages: awilix.asClass(GetMessages).singleton(),
+        updateMessage: awilix.asClass(UpdateMessage).singleton(),
+
+        createChat: awilix.asClass(CreateChat).singleton(),
+        deleteChat: awilix.asClass(DeleteChat).singleton(),
+        getChatById: awilix.asClass(GetChatById).singleton(),
+        getChats: awilix.asClass(GetChats).singleton(),
+        updateChat: awilix.asClass(UpdateChat).singleton(),
 
     });
 

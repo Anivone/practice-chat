@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import MainNavbar from "../Common/MainNavbar";
 import ChatContainer from "../Common/ChatContainer";
 import {Box} from "@material-ui/core";
@@ -6,6 +6,17 @@ import NavigationMenu from "../Common/NavigationMenu";
 import ChatsList from "../Common/ChatsList";
 
 function MainPage() {
+
+    const [state, setState] = useState({
+       chats: [],
+    });
+
+    useEffect(() => {
+        (async () => {
+
+        })();
+    }, []);
+
     return (
         <div className="main-page">
             <MainNavbar/>
@@ -16,7 +27,7 @@ function MainPage() {
                         <NavigationMenu/>
                     </Box>
                 </Box>
-                <ChatContainer></ChatContainer>
+                <ChatContainer/>
             </Box>
 
         </div>

@@ -2,6 +2,8 @@ import { IUserAccount } from "../dto/IUserAccount";
 import { GetUsers } from "../../domain/use-cases/user/GetUsers";
 import { GetContacts } from "../../domain/use-cases/contact/GetContacts";
 import { CreateContact } from "../../domain/use-cases/contact/CreateContact";
+import { GetChats } from "../../domain/use-cases/chat/GetChats";
+import { GetMessages } from "../../domain/use-cases/message/GetMessages";
 
 export interface IUserService {
 
@@ -25,4 +27,9 @@ export interface AddContactProps {
     userNickname: string;
     contactName: string;
     contactSurname: string;
+}
+
+export interface ChatServiceProps {
+    getChats: GetChats;
+    getMessages: GetMessages;
 }

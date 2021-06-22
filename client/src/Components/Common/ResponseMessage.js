@@ -15,10 +15,10 @@ function ResponseMessage({message}) {
         <Box maxWidth="100%" display="flex" justifyContent="flex-start">
             <Box  color="#fafafa" maxWidth="40%"  bgcolor="#002984"
                   padding={2} borderRadius={35} marginLeft={2}>
-                <Typography variant="body1">{message.message}</Typography>
+                <Typography variant="body1">{message.content}</Typography>
             </Box>
             <div>
-                <span>{getDateTime(message.date)}</span>
+                <span>{getDateTime(message.dateTime)}</span>
             </div>
         </Box>
     )

@@ -1,10 +1,10 @@
 export class MessageEntity {
 
-    constructor({ userId, chatId, message, date }) {
-        this.userId = userId;
-        this.chatId = chatId;
-        this.message = message;
-        this.date = date;
+    constructor({ userID, chatID, content, dateTime }) {
+        this.userID = userID;
+        this.chatID = chatID;
+        this.content = content;
+        this.dateTime = dateTime;
     }
 
 }

@@ -27,11 +27,12 @@ function ChatContainer() {
     const sendMessage = () => {
         if (state.newMessage === '') return;
         const message = new MessageEntity({
-            userId: 'user',
-            chatId: 'chat',
-            message: state.newMessage,
-            date: new Date(),
+            userID: 'user',
+            chatID: '60d2614a02b69e39049b7ad4',
+            content: state.newMessage,
+            dateTime: new Date(),
         });
+        console.log('message: ', message);
         socketService.sendMessage(message);
 
         state.messageList.push(message);
@@ -74,7 +75,7 @@ function ChatContainer() {
             >
 
                 {
-                    state.messageList.map(msg => msg.userId === 'user1'
+                    state.messageList.map(msg => msg.userID === 'user1'
                         ? <Message message={msg}/>
                         : <ResponseMessage message={msg}/>
                     )
