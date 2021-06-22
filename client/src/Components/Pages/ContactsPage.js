@@ -24,7 +24,7 @@ function ContactsPage(){
                         <NavigationMenu/>
                     </Box>
                 </Box>
-                <ChatContainer></ChatContainer>
+                <ChatContainer/>
             </Box>
 
         </div>
