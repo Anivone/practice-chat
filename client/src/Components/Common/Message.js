@@ -8,7 +8,7 @@ function Message({message}) {
         <Box maxWidth="100%" display="flex" justifyContent="flex-end">
             <Box  color="#fafafa" maxWidth="40%" width="auto" bgcolor="#3949ab"
                   padding={2} borderRadius={35} marginRight={2}>
-                <Typography variant="body1">{message}</Typography>
+                <Typography variant="body1">{message.message}</Typography>
             </Box>
         </Box>
     )

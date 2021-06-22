@@ -25,6 +25,7 @@ function ChatContainer() {
     });
 
     const sendMessage = () => {
+        if (state.newMessage === '') return;
         const message = new MessageEntity({
             userId: 'user',
             chatId: 'chat',
@@ -74,8 +75,8 @@ function ChatContainer() {
 
                 {
                     state.messageList.map(msg => msg.userId === 'user1'
-                        ? <Message message={msg.message}/>
-                        : <ResponseMessage message={msg.message}/>
+                        ? <Message message={msg}/>
+                        : <ResponseMessage message={msg}/>
                     )
                 }
             </Box>
