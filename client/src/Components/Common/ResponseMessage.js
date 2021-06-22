@@ -14,11 +14,13 @@ function ResponseMessage({message}) {
     return (
         <Box maxWidth="100%" display="flex" justifyContent="flex-start">
             <Box  color="#fafafa" maxWidth="40%"  bgcolor="#002984"
-                  padding={2} borderRadius={35} marginLeft={2}>
-                <Typography variant="body1">{message.content}</Typography>
+                  padding={2} borderRadius={35} marginLeft={2} display={'flex'}
+            flexDirection={'column'}>
+                <Typography variant="body1">{message.message}</Typography>
+                <Typography variant={'caption'}>{getDateTime(message.date)}</Typography>
             </Box>
             <div>
-                <span>{getDateTime(message.dateTime)}</span>
+                <span>{getDateTime(message.date)}</span>
             </div>
         </Box>
     )

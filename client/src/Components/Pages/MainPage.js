@@ -6,7 +6,14 @@ import NavigationMenu from "../Common/NavigationMenu";
 import ChatsList from "../Common/ChatsList";
 import axios from 'axios';
 import to from 'await-to-js';
+import {makeStyles} from "@material-ui/core/styles";
 
+const useStyles = makeStyles(() => ({
+
+    fullHeight: {
+        height:'92vh'
+    }
+}))
 function MainPage() {
 
     const [state, setState] = useState({
@@ -31,10 +38,11 @@ function MainPage() {
 
 
 
+    const classes = useStyles()
     return (
-        <div className="main-page">
+        <div className={classes.fullHeight}>
             <MainNavbar/>
-            <Box display="flex" height="50vw">
+            <Box display="flex" height={'100%'}>
                 <Box borderRight="1px solid #9fa8da" height="100%" width="25%">
                     <Box display="flex" height="100%" flexDirection="column" justifyContent="space-between">
                         <ChatsList chats={state.chats} setChat={setChat}/>
