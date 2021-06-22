@@ -15,7 +15,7 @@ export class ChatsController {
         return await getChats.execute();
     }
 
-    @Get('/:userID')
+    @Get('/full/:userID')
     async getChatsWithMessages(@Req() req: ContainerReq, @Param('userID') userID: string): Promise<any> {
         const { chatService }: { chatService: ChatService } = req.container.cradle;
         return await chatService.getChatsWithMessages(userID);

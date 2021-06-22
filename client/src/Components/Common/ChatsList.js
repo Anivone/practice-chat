@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function ChatsItem() {
+function ChatsList({chats, setChat}) {
     const classes = useStyles();
     return (
         <Box width="100%" display="flex" flexDirection="column" alignItems="center" height="90%">
@@ -34,11 +34,21 @@ function ChatsItem() {
                 />
             </Box>
             <List className={classes.root}>
-                <ChatItem/>
-
+                {chats
+                    ? chats.map(obj => <ChatItem
+                        _id={obj.chat._id}
+                        ownerID={obj.chat.ownerID}
+                        name={obj.chat.name}
+                        participants={obj.chat.participants}
+                        creationDate={obj.chat.creationDate}
+                        type={obj.chat.type}
+                        setChat={setChat}
+                    />)
+                    : null
+                }
             </List>
         </Box>
     )
 }
 
-export default ChatsItem
+export default ChatsList

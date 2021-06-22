@@ -17,18 +17,17 @@ export class ChatService {
         const [err, chats] = await to<IChat[]>(this.getChats.execute({ownerID: userID}));
         if (err) throw err;
 
-        const chatIds = chats.map(chat => chat.ownerID);
+        const chatIds = chats.map(chat => chat._id);
         const [err1, messages] = await to<IMessage[]>(this.getMessages.execute({
             chatID: {
                 $in: chatIds
             }
         }));
-
         if (err1) throw err1;
 
         return {
             chats: chats.map(chat => {
-                const chatMessages = messages.find(msg => msg.chatID === chat._id);
+                const chatMessages = messages.filter(msg => msg.chatID === chat._id);
                 return {
                     chat,
                     messages: chatMessages

@@ -5,22 +5,42 @@ import {
     ListItemText,
 } from "@material-ui/core";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import {ChatEntity} from "../../entities/ChatEntity";
 
-function ChatItem() {
+function ChatItem({
+                      _id,
+                      ownerID,
+                      name,
+                      participants,
+                      creationDate,
+                      type,
+                      setChat,
+                  }) {
 
+    console.log('name: ', name);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
+    const handleListItemClick = () => {
+        const chat = new ChatEntity({
+            _id,
+            ownerID,
+            name,
+            participants,
+            creationDate,
+            type
+        });
+
+        setChat(chat);
     };
+
     return (
         <ListItem style={{borderBottom: "1px solid #e0e0e0"}} button
                   selected={selectedIndex === 0}
-                  onClick={(event) => handleListItemClick(event, 0)}>
+                  onClick={handleListItemClick}>
             <ListItemIcon>
                 <AccountCircleIcon fontSize="large"/>
             </ListItemIcon>
-            <ListItemText primary="Contact 1"/>
+            <ListItemText primary={name}/>
         </ListItem>
     )
 }

@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-function ChatContainer() {
+function ChatContainer({ iconColor, chat, setChat}) {
     const classes = useStyles();
 
     const {socketService} = useContext(ContainerContext);
@@ -78,7 +78,7 @@ function ChatContainer() {
                     chatting</Typography>
             </Box>*/}
             <Box height="10%">
-            <ChatNavbar/>
+                <ChatNavbar name={chat.name} iconColor={iconColor} setChat={setChat}/>
             </Box>
             <Box id="scrollable-div'" overflow="scrollable" height="90%" width="100%" display="flex"
                  flexDirection="column"
@@ -86,7 +86,7 @@ function ChatContainer() {
             >
 
                 {
-                    state.messageList.map(msg => msg.userID === 'user1'
+                    chat.messages.map(msg => msg.userID === 'user'
                         ? <Message message={msg}/>
                         : <ResponseMessage message={msg}/>
                     )
