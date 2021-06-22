@@ -13,7 +13,8 @@ function NavigationMenu(){
 
     const handleClick = (path) => {history.push(path)}
     return(
-        <Box display="flex" width="100%" height="10%" justifyContent="space-around" borderTop="1px solid #9fa8da">
+        <Box display="flex" width="100%" justifyContent="space-around" borderTop="1px solid #9fa8da"
+             borderBottom="1px solid #9fa8da">
             <IconButton onClick={() => handleClick("/profile-settings")}><AccountCircleIcon fontSize="large"/></IconButton>
             <IconButton onClick={() => handleClick("/")}><ChatBubbleOutlineOutlinedIcon fontSize="large"/></IconButton>
             <IconButton onClick={() => handleClick("/contacts")}><PermContactCalendarIcon fontSize="large"/></IconButton>
