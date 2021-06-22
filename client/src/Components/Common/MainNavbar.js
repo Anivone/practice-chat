@@ -4,7 +4,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import {Typography} from "@material-ui/core";
 function MainNavbar(props){
         return (
-            <Box height="5vw" display="flex" justifyContent="space-between"
+            <Box height="4.2vw" display="flex" justifyContent="space-between"
                  alignItems="center" bgcolor="#5c6bc0" paddingX="60px">
                 <Box> <Typography variant="h5" gutterBottom>LOGO</Typography> </Box>
                 <Box display="flex" justifyContent="space-around" width="70px">
@@ -13,7 +13,7 @@ function MainNavbar(props){
                 </Box>
             </Box>
         )
-        
+
     }
 
 
