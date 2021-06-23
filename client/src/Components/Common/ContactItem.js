@@ -83,7 +83,7 @@ function ContactItem() {
 
     return (
         <div>
-        <ListItem style={{borderBottom: "1px solid #e0e0e0"}}>
+        <ListItem style={{borderBottom: "1px solid #e0e0e0"}} button>
             <ListItemIcon>
                 <AccountCircleIcon fontSize="large"/>
             </ListItemIcon>

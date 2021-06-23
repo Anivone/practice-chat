@@ -17,7 +17,6 @@ function ChatItem({
                       setChat,
                   }) {
 
-    console.log('name: ', name);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
 
     const handleListItemClick = () => {
@@ -29,6 +28,7 @@ function ChatItem({
             creationDate,
             type
         });
+        console.log('chat: ', chat);
 
         setChat(chat);
     };

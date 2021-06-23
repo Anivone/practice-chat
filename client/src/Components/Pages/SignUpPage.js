@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useHistory} from "react-router-dom";
+import to from "await-to-js";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -35,6 +37,41 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
     const history = useHistory();
 
+    const [state, setState] = useState({
+        firstName: '',
+        lastName: '',
+        userName: '',
+        phone: '',
+        email: '',
+        password: '',
+    })
+
+    const handleChange = (evt) => {
+        console.log('state: ', state);
+        setState({
+            ...state,
+            [evt.target.id]: evt.target.value
+        })
+    }
+
+    const onClickSubmit = async (evt) => {
+        evt.preventDefault();
+
+        const [err, response] = await to(axios.post('http://localhost:5000/auth/signup', {
+            ...state,
+            city: 'City',
+            avatar: 'Avatar',
+            description: 'Description',
+        }));
+        console.log('response: ', response);
+        if (err) throw err;
+
+        const data = response.data;
+        localStorage.setItem('registration', JSON.stringify(data.user));
+
+        history.push('/');
+    }
+
     const handleClick = (path) => {history.push(path)};
     const classes = useStyles();
 
@@ -54,6 +91,8 @@ export default function SignUp() {
 
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                onChange={handleChange}
+                                value={state.firstName}
                                 autoComplete="fname"
                                 name="firstName"
                                 variant="outlined"
@@ -66,6 +105,8 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                onChange={handleChange}
+                                value={state.lastName}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -77,21 +118,25 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={handleChange}
+                                value={state.userName}
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="username"
+                                id="userName"
                                 label="Username"
-                                name="username"
-                                autoComplete="username"
+                                name="userName"
+                                autoComplete="userName"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={handleChange}
+                                value={state.phone}
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="telephone"
+                                id="phone"
                                 label="Phone Number"
                                 name="telephone"
                                 autoComplete="telephone"
@@ -101,6 +146,8 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={handleChange}
+                                value={state.email}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -114,6 +161,8 @@ export default function SignUp() {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={handleChange}
+                                value={state.password}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -131,6 +180,7 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={onClickSubmit}
                     >
                         Sign Up
                     </Button>

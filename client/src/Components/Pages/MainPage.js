@@ -28,8 +28,6 @@ function MainPage() {
 
     const {path} = useRouteMatch();
 
-    console.log('path: ', path);
-
     const [state, setState] = useState({
         chats: [],
     });
@@ -70,7 +68,7 @@ function MainPage() {
                 </Box>
                 {chat
                     ? <ChatContainer
-                        chat={state.chats.find(chat => chat._id === chat._id)}
+                        chat={state.chats.find(c => c.chat._id === chat._id)}
                         setChat={setChat}/>
                     : null
                 }

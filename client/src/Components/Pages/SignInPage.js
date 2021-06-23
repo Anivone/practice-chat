@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useHistory} from "react-router-dom";
+import to from "await-to-js";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -37,8 +39,38 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
     const history = useHistory();
 
+    const [state, setState] = useState({
+        phone: '',
+        password: '',
+    })
+
     const handleClick = (path) => {history.push(path)};
     const classes = useStyles();
+
+    const handlePhone = (evt) => {
+        setState({
+            ...state,
+            phone: evt.target.value
+        })
+    }
+
+    const handlePassword = (evt) => {
+        setState({
+            ...state,
+            password: evt.target.value
+        })
+    }
+
+    const onClickSubmit = async (evt) => {
+        evt.preventDefault();
+        const [err, response] = await to(axios.post('http://localhost:5000/auth/login', state));
+        if (err) throw err;
+
+        const data = response.data;
+        localStorage.setItem('user', JSON.stringify(data.user));
+
+        history.push('/');
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -55,6 +87,7 @@ export default function SignIn() {
                         variant="outlined"
                         margin="normal"
                         required
+                        value={state.phone}
                         fullWidth
                         id="telephone"
                         label="Phone Number"
@@ -63,17 +96,20 @@ export default function SignIn() {
                         type="tel"
                         inputProps={{ pattern: "^\\+?3?8?(0\\d{9})$"}}
                         autoFocus
+                        onChange={handlePhone}
                     />
                     <TextField
                         variant="outlined"
                         margin="normal"
                         required
+                        value={state.password}
                         fullWidth
                         name="password"
                         label="Password"
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handlePassword}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -85,6 +121,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={onClickSubmit}
                     >
                         Sign In
                     </Button>

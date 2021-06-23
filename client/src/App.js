@@ -16,11 +16,11 @@ function App() {
             <div className="mainPage">
                 <Router>
                     <Switch>
-                        <Route path="/" component={MainPage}/>
                         <Route path="/sign-up" component={SignUpPage}/>
                         <Route path="/sign-in" component={SignInPage}/>
                         <Route path="/reset-password" component={ResetPasswordPage}/>
                         <Route path="/new-password" component={NewPasswordPage}/>
+                        <Route path="/" component={MainPage}/>
                     </Switch>
                 </Router>
             </div>
