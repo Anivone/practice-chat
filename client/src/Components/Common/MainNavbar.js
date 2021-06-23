@@ -6,7 +6,7 @@ function MainNavbar(props){
         return (
             <Box height="4.2vw" display="flex" justifyContent="space-between"
                  alignItems="center" bgcolor="#5c6bc0" paddingX="60px">
-                <Box> <Typography variant="h5" gutterBottom>LOGO</Typography> </Box>
+                <Box> <Typography variant="h5" gutterBottom>Online Chat</Typography> </Box>
                 <Box display="flex" justifyContent="space-around" width="70px">
                     <AccountCircleOutlinedIcon/>
                     <Box> <Typography variant="body1" gutterBottom> Hi, {props.name}</Typography></Box>
