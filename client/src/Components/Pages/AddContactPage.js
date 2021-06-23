@@ -9,7 +9,7 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
 
     fullHeight: {
-        height:'92vh'
+        height:'90vh'
     }
 }))
 function AddContactPage(){

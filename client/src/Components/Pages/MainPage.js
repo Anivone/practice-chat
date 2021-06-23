@@ -20,7 +20,7 @@ import NavigationMenu from "../Common/NavigationMenu";
 const useStyles = makeStyles(() => ({
 
     fullHeight: {
-        height: '92vh'
+        height: '90vh'
     }
 }))
 
